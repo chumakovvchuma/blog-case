@@ -15,7 +15,6 @@ export class UsersService {
     user.role = data.role
 
 
-
 		await this.UserRepository.save(user)
 
 		return user

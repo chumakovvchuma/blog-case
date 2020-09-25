@@ -19,4 +19,8 @@ export class CommentEntity {
   @Field(type => UserEntity)
   @Column()
   author: UserEntity;
+
+  @Field(type => String)
+  @Column()
+  text: string;
 }

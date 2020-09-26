@@ -5,7 +5,7 @@
     "username": "postgres",
     "password": "events",
     "database": "events-api",
-    "entities": ["dist/**/*.entity.js"],
+    "entities": ["dist/**/*.entity.js", "node_modules/nestjs-admin/**/*.entity.js"],
     "synchronize": true,
     "logging": true
 }

@@ -1,24 +1,21 @@
 import {
-  Column,
-  CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
   UpdateDateColumn,
-  OneToMany,
-  JoinTable,
+  ObjectType,
+  ManyToMany,
 } from 'typeorm';
 import { TodoItemEntity } from '../todo-item/todo-item.entity';
 
-@Entity({ name: 'user' })
-export class UserEntity {
+@Entity({ name: 'tag' })
+export class TagEntity {
   @PrimaryGeneratedColumn()
   id!: number;
 
   @Column()
-  username!: string;
-
-  @Column({ nullable: true })
-  password?: string;
+  name!: string;
 
   @CreateDateColumn()
   created!: Date;
@@ -26,7 +23,12 @@ export class UserEntity {
   @UpdateDateColumn()
   updated!: Date;
 
-  @OneToMany(() => TodoItemEntity, (todo) => todo.owner)
-  @JoinTable()
+  @ManyToMany((): ObjectType<TodoItemEntity> => TodoItemEntity, (td) => td.tags)
   todoItems!: TodoItemEntity[];
+
+  @Column({ nullable: true })
+  createdBy?: string;
+
+  @Column({ nullable: true })
+  updatedBy?: string;
 }
